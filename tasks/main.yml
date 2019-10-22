@@ -1,0 +1,8 @@
+---
+- name: ensure postgres packages are installed
+  apt:
+    name: "{{ _dubzland_postgres_base_packages }}"
+    state: present
+  tags:
+    - postgres
+    - apt

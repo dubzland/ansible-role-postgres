@@ -1,0 +1,5 @@
+---
+dubzland_postgres_package_name: "{{ _dubzland_postgres_package_name }}"
+dubzland_postgres_contrib_package_name: "{{ _dubzland_postgres_contrib_package_name }}"
+dubzland_postgres_version: "{{ _dubzland_postgres_version }}"
+
