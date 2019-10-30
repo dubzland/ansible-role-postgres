@@ -7,6 +7,5 @@
     name: "{{ dubzland_postgres_packages }}"
     state: present
   notify: enable postgres
-
   tags:
     - postgres

@@ -2,6 +2,8 @@
 - include_tasks: variables.yml
 - include_tasks: packages.yml
 
+- meta: flush_handlers
+
 - name: ensure PostgreSQL is running
   service:
     name: "{{ dubzland_postgres_service_name }}"

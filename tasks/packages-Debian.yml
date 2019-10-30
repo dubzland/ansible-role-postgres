@@ -17,10 +17,6 @@
   set_fact:
     dubzland_postgres_repository: "deb {{ dubzland_postgres_repo_url }} {{ ansible_lsb['codename'] }}-pgdg main"
 
-- name: dump the repository
-  debug:
-    msg: "{{ dubzland_postgres_repository }}"
-
 - name: ensure the PostgreSQL repository is available
   apt_repository:
     repo: "{{ dubzland_postgres_repository }}"
