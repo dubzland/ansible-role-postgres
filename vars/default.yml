@@ -1,2 +1,6 @@
 ---
 dubzland_postgres_extra_packages: []
+dubzland_postgres_packages:
+  - postgresql
+  - postgresql-contrib
+dubzland_postgres_service_name: postgresql
