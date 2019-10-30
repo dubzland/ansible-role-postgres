@@ -4,10 +4,6 @@
 
 - meta: flush_handlers
 
-- name: ensure PostgreSQL is started
-  command: "systemctl start {{ dubzland_postgres_service_name }}"
-  register: postgres_start
-
 - name: ensure PostgreSQL is running
   command: "systemctl status {{ dubzland_postgres_service_name }}"
   register: postgres_status
@@ -15,6 +11,10 @@
 - name: dump the output
   debug:
     msg: "{{ postgres_status.stdout_lines }}"
+
+- name: ensure PostgreSQL is started
+  command: "systemctl start {{ dubzland_postgres_service_name }}"
+  register: postgres_start
 
 - name: dump the output
   debug:
