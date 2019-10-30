@@ -1,0 +1,12 @@
+---
+- include_tasks: packages-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: ensure PostgreSQL packages are installed
+  package:
+    name: "{{ dubzland_postgres_packages }}"
+    state: present
+  notify: enable postgres
+
+  tags:
+    - postgres

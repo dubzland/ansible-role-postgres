@@ -1,2 +1,10 @@
 ---
-# handlers file for dubzland-postgres
+- name: enable postgres
+  service:
+    name: "{{ dubzland_postgres_service_name }}"
+    enabled: true
+
+- name: restart postgres
+  service:
+    name: "{{ dubzland_postgres_service_name }}"
+    state: restarted

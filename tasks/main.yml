@@ -1,8 +1,8 @@
 ---
-- name: ensure postgres packages are installed
-  apt:
-    name: "{{ _dubzland_postgres_base_packages }}"
-    state: present
-  tags:
-    - postgres
-    - apt
+- include_tasks: variables.yml
+- include_tasks: packages.yml
+
+- name: ensure PostgreSQL is running
+  service:
+    name: "{{ dubzland_postgres_service_name }}"
+    state: started
