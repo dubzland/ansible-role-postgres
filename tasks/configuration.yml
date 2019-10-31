@@ -1,0 +1,9 @@
+---
+- name: ensure PostgreSQL is configured
+  lineinfile:
+    dest: "{{ dubzland_postgres_configuration_directory }}/postgresql.conf"
+    regexp: "^#?{{ item.option }}"
+    line: "{{ item.option }} = '{{ item.value }}'"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ dubzland_postgres_configuration }}"
+  notify: restart postgres

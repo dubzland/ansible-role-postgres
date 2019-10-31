@@ -4,3 +4,5 @@ dubzland_postgres_packages:
   - postgresql
   - postgresql-contrib
 dubzland_postgres_service_name: postgresql
+dubzland_postgres_unix_socket_directories:
+  - /var/run/postgresql
