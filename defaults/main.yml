@@ -3,5 +3,5 @@ dubzland_postgres_version: "11"
 dubzland_postgres_configuration:
   - option: unix_socket_directories
     value: "{{ dubzland_postgres_unix_socket_directories | join(',') }}"
-  - option: listen_address
+  - option: listen_addresses
     value: "0.0.0.0"

@@ -8,4 +8,4 @@ dubzland_postgres_extra_packages:
 dubzland_postgres_service_name: "postgresql@{{ dubzland_postgres_version }}-main"
 dubzland_postgres_unix_socket_directories:
   - /var/run/postgresql
-dubzland_postgres_configuration_directory: "/var/lib/postgresql/{{ dubzland_postgres_version }}/main"
+dubzland_postgres_configuration_directory: "/etc/postgresql/{{ dubzland_postgres_version }}/main"
