@@ -5,22 +5,20 @@
 - meta: flush_handlers
 
 - name: ensure PostgreSQL is running
-  command: "systemctl status {{ dubzland_postgres_service_name }}"
-  register: postgres_status
+  service:
+    name: "{{ dubzland_postgres_service_name }}"
+    state: started
+    async: 100
+    poll: 0
+    register: service_sleeper
 
-- name: dump the output
+- name: check on service
+  async_status:
+    jid: "{{ service_sleeper.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 30
+
+- name: dump job result
   debug:
-    msg: "{{ postgres_status.stdout_lines }}"
-
-- name: ensure PostgreSQL is started
-  command: "systemctl start {{ dubzland_postgres_service_name }}"
-  register: postgres_start
-
-- name: dump the output
-  debug:
-    msg: "{{ postgres_start.stdout_lines }}"
-
-# - name: ensure PostgreSQL is running
-#   service:
-#     name: "{{ dubzland_postgres_service_name }}"
-#     state: started
+    msg: "{{ job_result.stdout_lines + job_result.stderr_lines}}"
