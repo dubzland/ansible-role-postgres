@@ -4,21 +4,25 @@
 
 - meta: flush_handlers
 
-- name: ensure PostgreSQL is running
-  systemd:
-    name: "{{ dubzland_postgres_service_name }}"
-    state: started
+- name: dump the service name
+  debug:
+    msg: "{{ dubzland_postgres_service_name }}"
 
-# - name: try to start postgres
+# - name: ensure PostgreSQL is running
 #   systemd:
 #     name: "{{ dubzland_postgres_service_name }}"
 #     state: started
-#     no_block: true
 
-# - name: dump the journal
-#   command: journalctl --no-pager
-#   register: journal_dump1
+- name: try to start postgres
+  systemd:
+    name: "{{ dubzland_postgres_service_name }}"
+    state: started
+    no_block: true
 
-# - name: show the journal
-#   debug:
-#     msg: "{{ journal_dump1.stdout_lines }}"
+- name: dump the journal
+  command: journalctl --no-pager
+  register: journal_dump1
+
+- name: show the journal
+  debug:
+    msg: "{{ journal_dump1.stdout_lines }}"
