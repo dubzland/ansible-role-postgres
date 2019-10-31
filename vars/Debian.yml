@@ -5,4 +5,4 @@ dubzland_postgres_repo_key_url: https://www.postgresql.org/media/keys/ACCC4CF8.a
 dubzland_postgres_repo_url: http://apt.postgresql.org/pub/repos/apt/
 dubzland_postgres_extra_packages:
   - libpq-dev
-dubzland_postgres_service_name: postgresql
+dubzland_postgres_service_name: "postgresql@{{ dubzland_postgres_version }}-main"
