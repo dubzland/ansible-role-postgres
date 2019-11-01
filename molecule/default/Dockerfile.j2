@@ -23,3 +23,5 @@ RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get install -y pyth
 
 # RUN rm -rf /lib/systemd/system/systemd*udev* ; \
 #     rm -rf /lib/systemd/system/getty.target;
+
+RUN apt-get update && apt-get install -y apt-utils
