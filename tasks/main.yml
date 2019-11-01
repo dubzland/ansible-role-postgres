@@ -16,7 +16,7 @@
     msg: "{{ journal_dump1.stdout_lines }}"
 
 - name: try to start postgres
-  shell: timeout 1m systemctl restart postgres@11-main
+  shell: "timeout 1m systemctl restart {{ dubzland_postgres_service_name }}"
   register: restart_logs
 
 - name: dump the restart log
