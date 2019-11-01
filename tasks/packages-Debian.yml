@@ -41,3 +41,10 @@
 - name: prepare PostgreSQL package list
   set_fact:
     dubzland_postgres_packages: "{{ dubzland_postgres_base_packages + dubzland_postgres_extra_packages }}"
+
+- name: ensure the PostgreSQL python libraries are installed
+  package:
+    name: "{{ dubzland_postgres_python_libraries }}"
+    state: present
+  tags:
+    - postgres
