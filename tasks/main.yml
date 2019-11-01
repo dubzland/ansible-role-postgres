@@ -15,6 +15,17 @@
   debug:
     msg: "{{ journal_dump1.stdout_lines }}"
 
+- name: try to start postgres
+  shell: timeout 1m systemctl restart postgres@11-main
+    name: "{{ dubzland_postgres_service_name }}"
+    state: started
+    no_block: true
+  register: restart_logs
+
+- name: dump the restart log
+  debug:
+    msg: "{{ restart_logs.stdout_lines }}"
+
 - meta: flush_handlers
 
 # - name: ensure PostgreSQL is running
