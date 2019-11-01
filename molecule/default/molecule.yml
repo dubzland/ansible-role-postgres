@@ -22,7 +22,6 @@ platforms:
     tmpfs:
       - /run
       - /run/lock
-      - /tmp
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     pre_build_image: true
