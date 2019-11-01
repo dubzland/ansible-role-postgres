@@ -25,6 +25,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     pre_build_image: true
+    privileged: True
 provisioner:
   name: ansible
   lint:
