@@ -26,7 +26,7 @@
 
 - name: dump the restart errors
   debug:
-    msg: "{{ restart_lots.stderr_lines }}"
+    msg: "{{ restart_logs.stderr_lines }}"
 
 - meta: flush_handlers
 
