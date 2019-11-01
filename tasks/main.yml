@@ -24,6 +24,10 @@
   debug:
     msg: "{{ restart_logs.stdout_lines }}"
 
+- name: dump the restart errors
+  debug:
+    msg: "{{ restart_lots.stderr_lines }}"
+
 - meta: flush_handlers
 
 # - name: ensure PostgreSQL is running
