@@ -6,6 +6,11 @@
   package:
     name: "{{ dubzland_postgres_packages }}"
     state: present
+  register: postgres_install
   notify: enable postgres
   tags:
     - postgres
+
+- name: dump the install log
+  debug:
+    msg: "{{ postgres_install.stdout_lines + postgres_install.stderr_lines }}"
