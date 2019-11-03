@@ -20,6 +20,18 @@ dubzland_postgres_version: ""
 
 Version of Postgres to install (formatted according to the platform's version scheme)
 
+### dubzland_postgres_configuration
+
+```yaml
+dubzland_postgres_configuration:
+  - option: unix_socket_directories
+    value: /var/run/postgresql
+  - option: listen_addresses
+    value: "0.0.0.0"
+```
+
+Any configuration options that should be written to `/etc/postgresql/<version>/main/postgresql.conf`.
+
 ## Dependencies
 
 None
