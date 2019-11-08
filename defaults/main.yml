@@ -1,7 +1,23 @@
 ---
 dubzland_postgres_version: "11"
+dubzland_postgres_user: 'postgres'
+dubzland_postgres_group: postgres
+dubzland_postgres_socket_directories:
+  - /var/run/postgresql
 dubzland_postgres_configuration:
   - option: unix_socket_directories
-    value: "{{ dubzland_postgres_unix_socket_directories | join(',') }}"
+    value: "{{ dubzland_postgres_socket_directories | join(',') }}"
   - option: listen_addresses
     value: "0.0.0.0"
+
+#
+# Users to create.  Example:
+#
+# - name: joeuser
+#   login_host: 'localhost'
+#   login_user: '{{ postgres
+dubzland_postgres_users: []
+
+#
+# Databases to create. Example:
+dubzland_postgres_databases: []

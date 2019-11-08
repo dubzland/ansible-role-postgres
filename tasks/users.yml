@@ -1,0 +1,19 @@
+---
+- name: ensure PostgreSQL users are present
+  postgresql_user:
+    db: "{{ item.db | default(omit) }}"
+    encrypted: "{{ item.encrypted | default(omit) }}"
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_unix_socket: "{{ item.login_unix_socket | default(dubzland_postgres_socket_directories | first) }}"
+    login_user: "{{ item.login_user | default(dubzland_postgres_user) }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password | default(omit) }}"
+    port: "{{ item.port | default(omit) }}"
+    priv: "{{ item.priv | default(omit) }}"
+    role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ dubzland_postgres_users }}"
+  no_log: True
+  become: True
+  become_user: "{{ dubzland_postgres_user }}"

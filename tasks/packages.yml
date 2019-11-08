@@ -1,6 +1,34 @@
 ---
-- include_tasks: packages-Debian.yml
-  when: ansible_os_family == 'Debian'
+- when: ansible_os_family == 'Debian'
+  block:
+    - name: ensure gnupg is available for apt_key
+      package:
+        name: gnupg
+        state: present
+      tags:
+        - postgres
+
+    - name: ensure the PostgreSQL repository key is present
+      apt_key:
+        url: "{{ dubzland_postgres_repo_key_url }}"
+        state: present
+      tags:
+        - postgres
+
+    - name: ensure the PostgreSQL repository is available
+      apt_repository:
+        repo: "{{ dubzland_postgres_repository }}"
+        state: present
+        update_cache: true
+      tags:
+        - postgres
+
+    - name: ensure the PostgreSQL python libraries are installed
+      package:
+        name: "{{ dubzland_postgres_python_libraries }}"
+        state: present
+      tags:
+        - postgres
 
 - name: ensure PostgreSQL packages are installed
   package:
