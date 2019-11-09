@@ -2,8 +2,6 @@
 - include_tasks: variables.yml
 - include_tasks: packages.yml
 - include_tasks: configuration.yml
-- include_tasks: users.yml
-- include_tasks: databases.yml
 
 - meta: flush_handlers
 
@@ -11,3 +9,7 @@
   service:
     name: "{{ dubzland_postgres_service_name }}"
     state: started
+
+- include_tasks: users.yml
+- include_tasks: databases.yml
+- include_tasks: extensions.yml

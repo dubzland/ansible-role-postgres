@@ -1,23 +1,96 @@
 ---
+# Version of PostgreSQL to install
 dubzland_postgres_version: "11"
+
+# Username/password of the system user PostgreSQL will run as
 dubzland_postgres_user: 'postgres'
 dubzland_postgres_group: postgres
+
+# Directories where PostgreSQL will create listening sockets
 dubzland_postgres_socket_directories:
   - /var/run/postgresql
+
+# Entries to be configured in `postgresql.conf`
 dubzland_postgres_configuration:
   - option: unix_socket_directories
     value: "{{ dubzland_postgres_socket_directories | join(',') }}"
   - option: listen_addresses
     value: "0.0.0.0"
 
+# Locales to be configured on the host
+dubzland_postgres_locales:
+  - 'en_US.UTF-8'
+
+# Authentication entries for `pg_hba.conf`.  The below configuration mirrors a
+# default install
+dubzland_postgres_hba_entries:
+  - type: local
+    database: all
+    user: postgres
+    auth_method: peer
+  - type: local
+    database: all
+    user: all
+    auth_method: peer
+  - type: host
+    database: all
+    user: all
+    address: '127.0.0.1/32'
+    auth_method: md5
+  - type: host
+    database: all
+    user: all
+    address: '::1/128'
+    auth_method: md5
 #
-# Users to create.  Example:
+# Users to create.  See
+# `https://docs.ansible.com/ansible/latest/modules/postgresql_user_module.html`
+# for details.
 #
-# - name: joeuser
-#   login_host: 'localhost'
-#   login_user: '{{ postgres
+# - name: joeuser # required; all other parameters are optional
+#   db: # omitted by default
+#   encrypted: # omitted by default
+#   login_host: # defaults to 'localhost'
+#   login_password: # omitted by default
+#   login_unix_socket: # defaults to first entry in `dubzland_postgres_socket_directories`
+#   login_user: # defaults to `dubzland_postgres_user`
+#   password: # omitted by default
+#   port: # omitted by default
+#   priv: # omitted by default
+#   role_attr_flags: # omitted by default
+#   state: # defaults to 'present'
+#
 dubzland_postgres_users: []
 
 #
-# Databases to create. Example:
+# Databases to create. See `https://docs.ansible.com/ansible/latest/modules/postgresql_db_module.html` for details.
+#
+# - name: testdb # required; all other parameters are optional
+#   encoding: # defaults to 'UTF-8'
+#   lc_collate: # defaults to 'en_US.UTF-8'
+#   lc_ctype: # defaults to 'en_US.UTF-8'
+#   login_host: # defaults to 'localhost'
+#   login_password: # omitted by default
+#   login_unix_socket: # defaults to first entry in `dubzland_postgres_socket_directories`
+#   login_user: # defaults to `dubzland_postgres_user`
+#   owner: # defaults to `dubzland_postgres_user`
+#   port: # omitted by default
+#   state: # defaults to 'present'
+#   template: # defaults to 'template0'
+#
 dubzland_postgres_databases: []
+
+#
+# Extensions. See `https://docs.ansible.com/ansible/latest/modules/postgresql_ext_module.html` for details.
+#
+# - name: pg_trgm # required; only this and `db` are required
+#   db: testdb # required; only this and `name` are required
+#   login_host: # defaults to 'localhost'
+#   login_password: # omitted by default
+#   login_unix_socket: # defaults to first entry in `dubzland_postgres_socket_directories`
+#   login_user: # defaults to `dubzland_postgres_user`
+#   port: # omitted by default
+#   schema: # omitted by default
+#   state: # defaults to 'present'
+#
+dubzland_postgres_extensions: []
