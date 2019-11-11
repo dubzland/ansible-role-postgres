@@ -2,7 +2,7 @@
 - name: enable postgres
   service:
     name: "{{ dubzland_postgres_service_name }}"
-    enabled: true
+    enabled: True
 
 - name: restart postgres
   service:
