@@ -8,7 +8,7 @@
         - "{{ ansible_os_family }}.yml"
         - default.yml
       paths:
-        - vars
+        - "{{ role_path }}/vars"
 
 - when: ansible_os_family == 'Debian'
   block:
