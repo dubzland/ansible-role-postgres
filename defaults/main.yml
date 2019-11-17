@@ -15,7 +15,7 @@ dubzland_postgres_configuration:
   - option: unix_socket_directories
     value: "{{ dubzland_postgres_socket_directories | join(',') }}"
   - option: listen_addresses
-    value: "0.0.0.0"
+    value: '127.0.0.1'
 
 # Locales to be configured on the host
 dubzland_postgres_locales:
