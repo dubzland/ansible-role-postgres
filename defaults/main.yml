@@ -1,6 +1,6 @@
 ---
 # Version of PostgreSQL to install
-dubzland_postgres_version: "11"
+dubzland_postgres_version: '11'
 
 # Username/password of the system user PostgreSQL will run as
 dubzland_postgres_user: 'postgres'

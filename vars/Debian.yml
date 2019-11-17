@@ -1,6 +1,6 @@
 ---
-dubzland_postgres_package_name: postgresql
-dubzland_postgres_contrib_package_name: postgresql-contrib
+dubzland_postgres_package_name: 'postgresql'
+dubzland_postgres_contrib_package_name: 'postgresql-contrib'
 dubzland_postgres_repo_key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 dubzland_postgres_repo_url: http://apt.postgresql.org/pub/repos/apt/
 dubzland_postgres_repository: "deb {{ dubzland_postgres_repo_url }} {{ ansible_distribution_release }}-pgdg main"
