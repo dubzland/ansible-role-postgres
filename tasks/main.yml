@@ -9,7 +9,13 @@
   service:
     name: "{{ dubzland_postgres_service_name }}"
     state: started
+  when: not dubzland_postgres_client_only
 
 - include_tasks: users.yml
+  when: not dubzland_postgres_client_only
+
 - include_tasks: databases.yml
+  when: not dubzland_postgres_client_only
+
 - include_tasks: extensions.yml
+  when: not dubzland_postgres_client_only

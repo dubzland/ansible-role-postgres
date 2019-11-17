@@ -15,15 +15,25 @@
     - name: prepare PostgreSQL package names
       set_fact:
         dubzland_postgres_package_name_versioned: "{{ dubzland_postgres_package_name }}-{{ dubzland_postgres_version }}"
+        dubzland_postgres_client_package_name_versioned: "{{ dubzland_postgres_client_package_name }}-{{ dubzland_postgres_version }}"
         dubzland_postgres_contrib_package_name_versioned: "{{ dubzland_postgres_contrib_package_name }}-{{ dubzland_postgres_version }}"
       tags:
         - postgres
 
-    - name: prepare PostgreSQL base package list
-      set_fact:
-        dubzland_postgres_base_packages:
-          - "{{ dubzland_postgres_package_name_versioned }}"
-          - "{{ dubzland_postgres_contrib_package_name_versioned }}"
+    - when: dubzland_postgres_client_only
+      block:
+        - name: prepare PostgreSQL base package list
+          set_fact:
+            dubzland_postgres_base_packages:
+              - "{{ dubzland_postgres_client_package_name_versioned }}"
+
+    - when: not dubzland_postgres_client_only
+      block:
+        - name: prepare PostgreSQL base package list
+          set_fact:
+            dubzland_postgres_base_packages:
+              - "{{ dubzland_postgres_package_name_versioned }}"
+              - "{{ dubzland_postgres_contrib_package_name_versioned }}"
 
     - name: prepare PostgreSQL package list
       set_fact:

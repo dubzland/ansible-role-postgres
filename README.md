@@ -20,6 +20,14 @@ dubzland_postgres_version: "11"
 
 Version of Postgres to install.
 
+### dubzland_postgres_client_only
+
+```yaml
+dubzland_postgres_client_only: False
+```
+
+Only install the PostgreSQL client tools.
+
 ### dubzland_postgres_user/dubzland_postgres_group
 
 ```yaml

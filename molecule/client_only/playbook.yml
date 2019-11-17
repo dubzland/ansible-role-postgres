@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: dubzland-postgres
+      vars:
+        dubzland_postgres_client_only: True

@@ -13,6 +13,7 @@
     line: "{{ item.option }} = '{{ item.value }}'"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ dubzland_postgres_configuration }}"
+  when: not dubzland_postgres_client_only
   notify: restart postgres
 
 - name: ensure PostgreSQL host based authentication is configured
@@ -23,7 +24,9 @@
     group: "{{ dubzland_postgres_group }}"
     mode: 0600
   notify: restart postgres
-  when: dubzland_postgres_hba_entries | length > 0
+  when:
+    - not dubzland_postgres_client_only
+    - dubzland_postgres_hba_entries | length > 0
 
 - name: ensure unix socket directories exist for PostgreSQL
   file:
@@ -33,4 +36,5 @@
     group: "{{ dubzland_postgres_group }}"
     mode: 02775
   with_items: "{{ dubzland_postgres_socket_directories }}"
+  when: not dubzland_postgres_client_only
   notify: restart postgres

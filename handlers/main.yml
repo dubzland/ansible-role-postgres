@@ -3,8 +3,10 @@
   service:
     name: "{{ dubzland_postgres_service_name }}"
     enabled: True
+  when: not dubzland_postgres_client_only
 
 - name: restart postgres
   service:
     name: "{{ dubzland_postgres_service_name }}"
     state: restarted
+  when: not dubzland_postgres_client_only

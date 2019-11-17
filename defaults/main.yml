@@ -2,6 +2,9 @@
 # Version of PostgreSQL to install
 dubzland_postgres_version: '11'
 
+# Should we install just the client packages?
+dubzland_postgres_client_only: False
+
 # Username/password of the system user PostgreSQL will run as
 dubzland_postgres_user: 'postgres'
 dubzland_postgres_group: postgres
