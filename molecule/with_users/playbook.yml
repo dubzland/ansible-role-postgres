@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   roles:
-    - role: dubzland-postgres
+    - role: ansible-role-postgres
       vars:
         dubzland_postgres_users:
           - name: "testuser"

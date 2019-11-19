@@ -1,5 +1,5 @@
-# Dubzland: PostgreSQL
-[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/jdubz/dubzland-postgres?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/jdubz/dubzland-postgres/pipelines)
+# Ansible Role: PostgreSQL
+[![Gitlab pipeline status (self-hosted)](https://git.dubzland.net/dubzland/ansible-role-postgres/badges/master/pipeline.svg)](https://git.dubzland.net/dubzland/ansible-role-postgres)
 
 Installs and configures PostgreSQL server.
 
