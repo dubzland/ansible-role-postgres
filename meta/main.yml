@@ -14,3 +14,5 @@ galaxy_info:
         - buster
   galaxy_tags:
     - postgresql
+    - database
+    - db
