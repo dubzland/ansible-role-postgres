@@ -17,3 +17,5 @@
   no_log: True
   become: True
   become_user: "{{ dubzland_postgres_user }}"
+  vars:
+    ansible_ssh_pipelining: True
