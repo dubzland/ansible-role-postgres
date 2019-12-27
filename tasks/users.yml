@@ -14,7 +14,7 @@
     role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ dubzland_postgres_users }}"
-  no_log: True
+  #no_log: True
   become: True
   become_user: "{{ dubzland_postgres_user }}"
   vars:
