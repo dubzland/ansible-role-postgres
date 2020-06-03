@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-role-postgres
+      vars:
+        dubzland_postgres_databases:
+          - name: 'testdb'
+            state: present
+        dubzland_postgres_tables:
+          - name: 'testtable'
+            db: 'testdb'
+            columns:
+              - id bigserial primary key
+              - name text
+              - age bigint
+            state: present

@@ -17,5 +17,8 @@
 - include_tasks: databases.yml
   when: not dubzland_postgres_client_only
 
+- include_tasks: tables.yml
+  when: not dubzland_postgres_client_only
+
 - include_tasks: extensions.yml
   when: not dubzland_postgres_client_only

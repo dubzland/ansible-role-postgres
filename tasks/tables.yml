@@ -1,0 +1,19 @@
+---
+- name: ensure PostgreSQL tables are present
+  postgresql_table:
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_unix_socket: "{{ item.login_unix_socket | default(dubzland_postgres_socket_directories | first) }}"
+    login_user: "{{ item.login_user | default(dubzland_postgres_user) }}"
+    table: "{{ item.name }}"
+    db: "{{ item.db }}"
+    columns: "{{ item.columns }}"
+    owner: "{{ item.owner | default(dubzland_postgres_user) }}"
+    port: "{{ item.port | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ dubzland_postgres_tables }}"
+  # no_log: True
+  become: True
+  become_user: "{{ dubzland_postgres_user }}"
+  vars:
+    ansible_ssh_pipelining: True

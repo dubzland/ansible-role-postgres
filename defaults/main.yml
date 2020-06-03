@@ -84,6 +84,22 @@ dubzland_postgres_users: []
 dubzland_postgres_databases: []
 
 #
+# Tables to create.  See # `https://docs.ansible.com/ansible/latest/modules/postgresql_table_module.html` # for details.
+#
+# - name: testtable
+#   db: testdb
+#   login_host: # defaults to 'localhost'
+#   login_password: # omitted by default
+#   login_unix_socket: # defaults to first entry in `dubzland_postgres_socket_directories`
+#   login_user: # defaults to `dubzland_postgres_user`
+#   owner: # defaults to `dubzland_postgres_user`
+#   port: # omitted by default
+#   state: # defaults to 'present'
+#   columns: # columns to add
+#
+dubzland_postgres_tables: []
+
+#
 # Extensions. See `https://docs.ansible.com/ansible/latest/modules/postgresql_ext_module.html` for details.
 #
 # - name: pg_trgm # required; only this and `db` are required

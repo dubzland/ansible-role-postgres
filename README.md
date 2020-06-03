@@ -112,6 +112,15 @@ dubzland_postgres_databases: []
 Any databases that should be created on the server.  See `defaults/main.yml` for
 details.
 
+### dubzland_postgres_tables
+
+```yaml
+dubzland_postgres_tables: []
+```
+
+Any tables that should be created on the server.  See `defaults/main.yml` for
+details.
+
 ### dubzland_postgres_extensions
 
 ```yaml
