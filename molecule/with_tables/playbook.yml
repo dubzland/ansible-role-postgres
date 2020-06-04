@@ -4,6 +4,10 @@
   roles:
     - role: ansible-role-postgres
       vars:
+        dubzland_postgres_users:
+          - name: testuser
+            password: testpassword
+            encrypted: True
         dubzland_postgres_databases:
           - name: 'testdb'
             state: present
@@ -14,4 +18,8 @@
               - id bigserial primary key
               - name text
               - age bigint
+            privileges:
+              - user: testuser
+                privs:
+                  - SELECT
             state: present

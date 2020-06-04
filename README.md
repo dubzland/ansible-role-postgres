@@ -141,6 +141,25 @@ None
   become: yes
   roles:
   - role: dubzland-postgres
+    vars:
+      dubzland_postgres_users:
+        - name: myuser
+          password: supersekret
+      dubzland_postgres_databases:
+        - name: testdb
+          state: present
+      dubzland_postgres_tables:
+        - name: testtable
+          db: testdb
+          columns:
+            - id bigserial primary key
+            - name text
+            - age bigint
+          privileges:
+            - user: myuser
+              privs:
+                - SELECT
+                - INSERT
 ```
 
 ## License

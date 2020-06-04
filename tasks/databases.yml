@@ -13,8 +13,24 @@
     port: "{{ item.port | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     template: "{{ item.template | default('template0') }}"
-  with_items: "{{ dubzland_postgres_databases }}"
+  loop: "{{ dubzland_postgres_databases }}"
   no_log: True
+  become: True
+  become_user: "{{ dubzland_postgres_user }}"
+  vars:
+    ansible_ssh_pipelining: True
+
+
+- name: ensure proper permissions exist for created databases
+  postgresql_privs:
+    database: "{{ item.0.name }}"
+    state: present
+    privs: "{{ item.1.privs | join(',') }}"
+    type: database
+    roles: "{{ item.1.user }}"
+    grant_option: "{{ item.1.grant | default('no') }}"
+  loop: "{{ dubzland_postgres_databases | subelements('privileges', 'skip_missing=True') }}"
+  #no_log: True
   become: True
   become_user: "{{ dubzland_postgres_user }}"
   vars:

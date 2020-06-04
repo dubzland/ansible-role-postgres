@@ -4,9 +4,18 @@
   roles:
     - role: ansible-role-postgres
       vars:
+        dubzland_postgres_users:
+          - name: testuser
+            password: testpassword
+            encrypted: True
         dubzland_postgres_databases:
           - name: 'testdb'
             state: present
+            privileges:
+              - user: testuser
+                privs:
+                  - CREATE
+
         dubzland_postgres_extensions:
           - name: pg_trgm
             db: template1

@@ -79,6 +79,7 @@ dubzland_postgres_users: []
 #   owner: # defaults to `dubzland_postgres_user`
 #   port: # omitted by default
 #   state: # defaults to 'present'
+#   privileges: # list of privileges to grant
 #   template: # defaults to 'template0'
 #
 dubzland_postgres_databases: []
@@ -95,6 +96,7 @@ dubzland_postgres_databases: []
 #   owner: # defaults to `dubzland_postgres_user`
 #   port: # omitted by default
 #   state: # defaults to 'present'
+#   privileges: # list of privileges to grant
 #   columns: # columns to add
 #
 dubzland_postgres_tables: []
